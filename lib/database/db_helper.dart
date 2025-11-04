@@ -137,16 +137,22 @@ class DBHelper {
     return await db.query('notas');
   }
 
-  // 🔹 Traer notas junto con nombre del estudiante
-  Future<List<Map<String, dynamic>>> getNotasConEstudiante() async {
-    final db = await database;
-    return await db.rawQuery('''
-      SELECT n.id, e.nombre AS estudiante, n.asignatura, n.nota, n.fecha
-      FROM notas n
-      INNER JOIN estudiantes e ON n.estudiante_id = e.id
-      ORDER BY n.fecha DESC
-    ''');
-  }
+Future<List<Map<String, dynamic>>> getNotasConEstudiante() async {
+  final db = await database;
+  return await db.rawQuery('''
+    SELECT 
+      n.id, 
+      e.nombre AS estudiante, 
+      e.grado AS grado,
+      n.asignatura, 
+      n.nota, 
+      n.fecha
+    FROM notas n
+    INNER JOIN estudiantes e ON n.estudiante_id = e.id
+    ORDER BY n.fecha DESC
+  ''');
+}
+
 
   // 🔹 Eliminar nota
   Future<int> deleteNota(int id) async {

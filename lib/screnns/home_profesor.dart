@@ -7,6 +7,7 @@ class HomeProfesorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const rolUsuario = 'profesor';
     return Scaffold(
       appBar: AppBar(title: const Text('Panel Profesor')),
       body: Center(
@@ -16,7 +17,7 @@ class HomeProfesorScreen extends StatelessWidget {
             ElevatedButton(
               child: const Text('Registrar Notas'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const NotasScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => NotasScreen(rolUsuario: rolUsuario),));
               },
             ),
             ElevatedButton(

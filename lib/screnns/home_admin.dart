@@ -9,6 +9,7 @@ class HomeAdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     const rolUsuario = 'admin';
     return Scaffold(
       appBar: AppBar(title: const Text('Panel Administrador')),
       body: Center(
@@ -18,13 +19,13 @@ class HomeAdminScreen extends StatelessWidget {
             ElevatedButton(
               child: const Text('Gestionar Estudiantes'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const EstudiantesScreen()));
+                Navigator.push(context, MaterialPageRoute( builder: (_) => EstudiantesScreen(rolUsuario: rolUsuario),));
               },
             ),
             ElevatedButton(
               child: const Text('Registrar Notas'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const NotasScreen()));
+                Navigator.push(context, MaterialPageRoute( builder: (_) => NotasScreen(rolUsuario: rolUsuario),));
               },
             ),
             ElevatedButton(
