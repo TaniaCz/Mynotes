@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../database/db_helper.dart';
 
 class EstudiantesScreen extends StatefulWidget {
-  final String rolUsuario; // 'admin' o 'profesor'
+  final String rolUsuario; 
 
   const EstudiantesScreen({super.key, required this.rolUsuario});
 
@@ -17,7 +17,7 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
   final gradoCtrl = TextEditingController();
 
   List<Map<String, dynamic>> estudiantes = [];
-  int? estudianteEditando; // null si se está creando
+  int? estudianteEditando; 
 
   @override
   void initState() {
@@ -25,13 +25,13 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
     cargarEstudiantes();
   }
 
-  // 🔹 Cargar estudiantes
+  //Cargar estudiantes
   Future<void> cargarEstudiantes() async {
     final data = await db.getEstudiantes();
     setState(() => estudiantes = data);
   }
 
-  // 🔹 Registrar o actualizar estudiante
+  //Registrar o actualizar estudiante
   Future<void> guardarEstudiante() async {
     if (nombreCtrl.text.isEmpty || correoCtrl.text.isEmpty || gradoCtrl.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -74,7 +74,7 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
     cargarEstudiantes();
   }
 
-  // 🔹 Eliminar estudiante (solo admin)
+  
   Future<void> eliminarEstudiante(int id) async {
     await db.deleteEstudiante(id);
     cargarEstudiantes();
@@ -83,7 +83,7 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
     );
   }
 
-  // 🔹 Editar estudiante (solo admin)
+  
   void editarEstudiante(Map<String, dynamic> estudiante) {
     setState(() {
       estudianteEditando = estudiante['id'];
@@ -103,7 +103,7 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // 🔹 Formulario (visible para admin y profesor)
+          
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -154,7 +154,6 @@ class _EstudiantesScreenState extends State<EstudiantesScreen> {
             ),
             const SizedBox(height: 10),
 
-            // 🔹 Lista de estudiantes
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

@@ -28,6 +28,7 @@ class DBHelper {
   }
 
   // ================= CREAR TABLAS Y DATOS =================
+  
   Future<void> _onCreate(Database db, int version) async {
     // ======== TABLA USUARIOS ========
     await db.execute('''
@@ -85,7 +86,7 @@ class DBHelper {
     ''');
   }
 
-  // ================= MÉTODOS USUARIOS =================
+  // ================= USUARIOS =================
   Future<int> insertarUsuario(Map<String, dynamic> data) async {
     final db = await database;
     return await db.insert('usuarios', data);
@@ -105,7 +106,7 @@ class DBHelper {
     return null;
   }
 
-  // ================= MÉTODOS ESTUDIANTES =================
+  // ================= ESTUDIANTES =================
   Future<int> insertEstudiante(Map<String, dynamic> data) async {
     final db = await database;
     return await db.insert('estudiantes', data);
@@ -126,7 +127,7 @@ class DBHelper {
     return await db.delete('estudiantes', where: 'id = ?', whereArgs: [id]);
   }
 
-  // ================= MÉTODOS NOTAS =================
+  // ================= NOTAS =================
   Future<int> insertNota(Map<String, dynamic> data) async {
     final db = await database;
     return await db.insert('notas', data);

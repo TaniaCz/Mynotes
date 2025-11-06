@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../database/db_helper.dart';
 
 class NotasScreen extends StatefulWidget {
-  final String rolUsuario; // 'admin' o 'profesor'
+  final String rolUsuario; 
 
   const NotasScreen({super.key, required this.rolUsuario});
 
@@ -26,7 +26,7 @@ class _NotasScreenState extends State<NotasScreen> {
     cargarEstudiantes();
   }
 
-  // 🔹 Cargar notas con nombre y grado del estudiante
+  
   Future<void> cargarNotas() async {
     final data = await db.getNotasConEstudiante();
     setState(() => notas = data);
@@ -37,7 +37,7 @@ class _NotasScreenState extends State<NotasScreen> {
     setState(() => estudiantes = data);
   }
 
-  // 🔹 Agregar una nueva nota
+  // Agregar una nueva nota
   Future<void> agregarNota() async {
     if (estudianteSeleccionado == null ||
         asignaturaCtrl.text.isEmpty ||
@@ -71,7 +71,7 @@ class _NotasScreenState extends State<NotasScreen> {
     );
   }
 
-  // 🔹 Eliminar una nota (solo admin)
+
   Future<void> eliminarNota(int id) async {
     await db.deleteNota(id);
     cargarNotas();
@@ -93,7 +93,7 @@ class _NotasScreenState extends State<NotasScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // 🔹 Formulario para agregar notas
+
             Card(
               elevation: 3,
               shape:
@@ -153,7 +153,6 @@ class _NotasScreenState extends State<NotasScreen> {
             ),
             const SizedBox(height: 10),
 
-            // 🔹 Lista de notas
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
